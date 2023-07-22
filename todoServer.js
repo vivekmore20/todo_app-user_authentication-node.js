@@ -87,9 +87,7 @@ function updateTodoInFile(userId,callback) {
     })
 }
 
-app.listen(3000, function () {
-  console.log("server on port 3000");
-});
+
 
 function readAllTodos(callback) {
   fs.readFile("./todo.json", "utf-8", function (err, data) {
@@ -148,3 +146,6 @@ function deleteItemTodo(userid,callback){
         });
     })
 }
+app.listen(3000, function () {
+  console.log("server on port 3000");
+});

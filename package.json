@@ -5,8 +5,8 @@
   },
   "devDependencies": {
     "jest": "^29.6.1"
-  },"scripts": {
+  },
+  "scripts": {
     "test": "jest"
   }
 }
-

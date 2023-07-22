@@ -1,8 +1,6 @@
 const express = require("express");
 const fs = require("fs");
-
 const app = express();
-
 app.use(express.json());
 
 app.get("/", function (req, res) {
@@ -60,19 +58,7 @@ app.post("/update", function (req, res) {
         res.status(200).send("success");
     })
 })
-
-app.post("/updatein", function (req, res) {
-    const id=req.body.userid;
-    console.log(id);
-    updateTodoIn(id, function (err) 
-    {
-        if (err) {
-            res.status(500).send("error");
-            return;
-        }
-        res.status(200).send("success");
-    })
-})
+    
 
 function updateTodoInFile(userId,callback) {
     readAllTodos(function (err, data) {
@@ -80,7 +66,6 @@ function updateTodoInFile(userId,callback) {
             callback(err);
             return;
         }
-    
         const updatedData = data.map((todo) => {
             if (todo.userid == userId) {
               if(todo.completed!==true){
@@ -91,29 +76,8 @@ function updateTodoInFile(userId,callback) {
             }
             return todo;
         })
-        fs.writeFile("./todo.json", JSON.stringify(updatedData), function (err) {
-            if (err) {
-                callback(err);
-                return;
-            }
-            callback(null);
-        });
-    })
-}
-
-function updateTodoIn(userId, callback) {
-    readAllTodos(function (err, data) {
-        if (err) {
-            callback(err);
-            return;
-        }
-        const updatedData = data.map((todo) => {
-            if (todo.userid == userId) {
-                todo.completed = false;
-            }
-            return todo;
-        })
-        fs.writeFile("./todo.json", JSON.stringify(updatedData), function (err) {
+     
+        fs.writeFile("./todo.json", JSON.stringify(data), function (err) {
             if (err) {
                 callback(err);
                 return;
@@ -133,11 +97,9 @@ function readAllTodos(callback) {
       callback(err);
       return;
     }
-
     if (data.length === 0) {
       data = "[]";
     }
-
     try {
       data = JSON.parse(data);
       callback(null, data);

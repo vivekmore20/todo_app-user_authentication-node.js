@@ -34,12 +34,14 @@ submitTodoNode.addEventListener("click", function () {
 function showTodoInUI(todo) {
   const todoTextNode = document.createElement("li");
   const node = document.createElement("div");
+  
   todoTextNode.innerText = todo.todoText;
   todoListNode.appendChild(node);
   node.appendChild(todoTextNode);
   var x = document.createElement("INPUT");
   x.setAttribute("type", "checkbox");
   x.className = "checkbox";
+
   node.appendChild(x);
   let text = document.createElement("p");
   text.innerText = todo.priority;
@@ -49,24 +51,30 @@ function showTodoInUI(todo) {
   deleteItem.setAttribute('id', 'delete-btn');
   deleteItem.innerText = "Delete";
   node.appendChild(deleteItem);
+
+  if(todo.completed){
+    todoTextNode.style.textDecoration = "line-through";
+    x.checked=true;
+   // text.innerHTML = "complete";
+  }else{
+    todoTextNode.style.textDecoration = "none";
+  }
   deleteItem.addEventListener('click', function () {
     deleteItemTodo(todo);
   })
   x.addEventListener("change", () => {
     if (x.checked) {
-      // text.innerHTML = "complete";
       updateStatus(todo.userid, todo);
-      todoTextNode.style.textDecorationLine="line-through";
+      todoTextNode.style.textDecoration = "line-through";
     } else {
-      // text.innerHTML = "incomplete";
+      text.innerHTML = todo.priority;
       console.log("im incomplete");
       updateStatus(todo.userid, todo);
-      todoTextNode.style.textDecorationLine="none";
+      todoTextNode.style.textDecoration = "none";
     }
   });
 
 }
-
 function deleteItemTodo(todo){
     console.log(todo);
     fetch("/delete",{
@@ -101,7 +109,6 @@ function updateStatus(id, todo) {
     console.log("then")
     if (response.status == 200) {
       console.log("saved");
-      
     } else (err) => {
       alert("Error while updating todo");
     }
@@ -129,8 +136,7 @@ function newTodo() {
       alert("Error while updating todo");
     })
 }
-
-fetch("/todo-data")
+  fetch("/todo-data")
   .then(function (response) {
     if (response.status === 200) {
       return response.json();

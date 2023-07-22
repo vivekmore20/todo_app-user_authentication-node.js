@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <link  type="text/css" rel="stylesheet" href="styles.css">
+</head>
+  <body>
+    <div class="container">
+      <div class="left-container">
+        <div class="heading">
+          <h1>TASK LIST</h1>
+          <p>Add tasks to your list by typing to the right and press&shy;ing Add button. You may then view pending tasks below.</p>
+        </div>
+          <div id="todo-item" class="todo-item"></div>
+              <ul id="todo-item" class="taskList">
+
+              </ul>
+          </div>
+      </div>
+      <div class="right-container">
+          <div class="input-section">
+              <div><input id="userInput" placeholder="Enter task" /></div>
+              <select id="prioritySelector">
+                  <option value="high">High</option>
+                  <option value="medium">Medium</option>
+                  <option value="low">Low</option>
+              </select>
+              <button id="submitTodo">Add Task</button>
+          </div>
+      </div>
+  </body>
+  <script src="/todoScript.js"></script>
+</html>

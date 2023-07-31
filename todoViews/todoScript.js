@@ -25,6 +25,8 @@ submitTodoNode.addEventListener("click", function () {
   }).then(function (response) {
     if (response.status === 200) {
       showTodoInUI(todo);
+    }else if(response.status===400){
+      alert("Please login to add todo");
     } else {
       alert("something weird happened");
     }
@@ -87,7 +89,10 @@ function deleteItemTodo(todo){
         if(response.status===200){
             console.log("saved");
             newTodo();
-        }else(err)=>{
+        }else if(response.status===400){
+            alert("Please login to delete todo");
+        }
+        (err)=>{
             alert("Error while deleting todo");
         }
     }).catch(function(err){
@@ -107,9 +112,11 @@ function updateStatus(id, todo) {
     body: JSON.stringify(todo),
   }).then(function (response) {
     console.log("then")
-    if (response.status == 200) {
+    if (response.status === 200) {
       console.log("saved");
-    } else (err) => {
+    } else if(response.status===401){
+      alert("Please login to update todo");
+    } else(err) => {
       alert("Error while updating todo");
     }
   }).catch(function (err) {
@@ -123,7 +130,10 @@ function newTodo() {
     .then(function (response) {
       if (response.status === 200) {
         return response.json();
-      } else {
+      } else if(response.status===400){
+        alert("Please login to add todo");
+        }else
+         {
         alert("something weird happened");
       }
     })

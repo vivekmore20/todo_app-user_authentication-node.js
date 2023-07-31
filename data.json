@@ -1,0 +1,25 @@
+[{
+        "name": "Durgesh",
+        "age":21,
+        "number":9798632985,
+        "email":"durgesh@gmail.com"
+},   
+{
+    "name": "Vinay",
+    "age":21,
+    "number":7229720749,
+    "email":"vinay@gmail.com"
+},
+{
+    "name": "Hemant",
+    "age":21,
+    "number":9767969696,
+    "email":"hemant@gmail.com"
+},
+{
+    "name": "Vaibhav",
+    "age":19,
+    "number":9384937897,
+    "email":"vaibhav@gmail.com"
+}
+]

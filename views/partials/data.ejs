@@ -1,0 +1,38 @@
+<style>
+    table,th,tr,td{
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 10px;
+    }
+    
+    
+</style>
+
+<% if(data) { %>
+    <div >
+        <table >
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Number</th>
+                <th>Email</th>
+            </tr>
+            <% data.forEach(function(data) { %>
+                <tr>
+                    <td>
+                        <%= data.name %>
+                    </td>
+                    <td>
+                        <%= data.age %>
+                    </td>
+                    <td>
+                        <%= data.number %>
+                    </td>
+                    <td>
+                        <%= data.email %>
+                    </td>
+                </tr>
+                <% }); %>
+        </table>
+    </div>
+    <% } %>
